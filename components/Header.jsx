@@ -28,7 +28,7 @@ function Header() {
                   Bookings
                 </Link>
                 <Link
-                  href="/add-venue"
+                  href="/venues/add"
                   className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white"
                 >
                   Add Venue
@@ -41,25 +41,25 @@ function Header() {
             <div className="ml-4 flex items-center md:ml-6">
               {/* <!-- Logged Out Only --> */}
               <Link
-                href="login"
+                href="/login"
                 className="mr-3 text-gray-800 hover:text-gray-600"
               >
                 <FaSignInAlt className="inline mr-1"/> Login
               </Link>
               <Link
-                href="register"
+                href="/register"
                 className="mr-3 text-gray-800 hover:text-gray-600"
               >
                 <FaUser className="inline mr-1"/> Register
               </Link>
               <Link 
-                href="my-venues" 
+                href="/venues/mylist" 
                 className="mr-3 text-gray-800 hover:text-gray-600"
             >
               <FaBuilding className="inline mr-1"/> My Venues
               </Link>
               <Link
-                href="login"
+                href="/login"
                 className="mx-3 text-gray-800 hover:text-gray-600"
               >
                 <FaSignOutAlt className="inline mr-1"/> Sign Out
@@ -86,7 +86,7 @@ function Header() {
             Bookings
           </Link>
           <Link
-            href="/add-venue"
+            href="/venues/add"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white"
           >
             Add Room

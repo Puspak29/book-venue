@@ -1,13 +1,14 @@
 import { BookingForm, Heading } from "@/components"
-import rooms from "@/data/rooms.json"
+// import rooms from "@/data/rooms.json"
 import Image from "next/image"
 import Link from "next/link"
 import { FaChevronLeft } from "react-icons/fa"
+import getSingleVenue from '@/app/actions/getSingleVenue'
 
-function page({params}) {
+async function page({params}) {
 
-    const { id } = params
-    const room = rooms.find(room => room.$id === id)
+    const { id } = await params
+    const room = await getSingleVenue(id)
     if(!room) return <Heading props="Venue not found" />
   return (
     <>
@@ -23,7 +24,7 @@ function page({params}) {
 
         <div className="flex flex-col sm:flex-row sm:space-x-6">
           <Image
-            src={`/images/rooms/${room.image}`}
+            src={`/images/venues/${room.image}`}
             alt={room.name}
             width={400}
             height={100}
