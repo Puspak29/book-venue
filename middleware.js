@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
+import checkAuth from './app/actions/checkAuth';
 
 export async function middleware(req) {
-    const isAuthorized = false;
-    if (!isAuthorized) {
+    const {isAuth} = await checkAuth();
+    if (!isAuth) {
         return NextResponse.redirect(new URL('/login', req.url));
     }
 
@@ -10,5 +11,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-    matcher: ['/bookings', '/venues/mylist'],
+    matcher: ['/bookings'],
 }
