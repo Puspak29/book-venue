@@ -1,7 +1,9 @@
 
 # BookVenue
 
-It is a Venue booking website build with Next.js(React), Appwrite, Tailwind CSS. (currently working)
+It is a Venue booking website build with Next.js(React), Appwrite, Tailwind CSS.
+
+:exclamation: **Note:** Currently working
 
 
 ## Features
