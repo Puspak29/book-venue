@@ -31,8 +31,8 @@ const createSessionClient = async (session) => {
         get account(){
             return new Account(client)
         },
-        get storage(){
-            return new Storage(client)
+        get databases(){
+            return new Databases(client)
         }
     }
 }
