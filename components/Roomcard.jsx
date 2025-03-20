@@ -2,13 +2,20 @@ import Link from "next/link"
 import Image from "next/image"
 
 function Roomcard({props}) {
+  const bucketId = process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_VENUE;
+  const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT;
+
+  const imgUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketId}/files/${props.image}/view?project=${projectId}`;
+
+  const imgSrc = props.image ? imgUrl : '/images/no-image.jpg';
+
   return (
     <div
             className="bg-white shadow rounded-lg p-4 mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center"
           >
             <div className="flex flex-col sm:flex-row sm:space-x-4">
               <Image
-                src={`/images/venues/${props.image}`} // Dynamic image path
+                src={imgSrc} // Dynamic image path
                 alt={props.name} // Dynamic alt text
                 width={400}
                 height={100}

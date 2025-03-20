@@ -10,6 +10,13 @@ async function page({params}) {
     const { id } = await params
     const room = await getSingleVenue(id)
     if(!room) return <Heading props="Venue not found" />
+    const bucketId = process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_VENUE;
+    const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT;
+
+    const imgUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketId}/files/${room.image}/view?project=${projectId}`;
+
+    const imgSrc = room.image ? imgUrl : '/images/no-image.jpg';
+
   return (
     <>
       <Heading props={room.name} />
@@ -24,7 +31,7 @@ async function page({params}) {
 
         <div className="flex flex-col sm:flex-row sm:space-x-6">
           <Image
-            src={`/images/venues/${room.image}`}
+            src={imgSrc}
             alt={room.name}
             width={400}
             height={100}
