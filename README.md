@@ -12,6 +12,6 @@ It is a Venue booking website build with Next.js(React), Appwrite, Tailwind CSS.
 - All available venues are shown.
 - Can view full details of venue.
 - New venues can be added.
-- Exixting venue can be deleted.
-
-
+- Existing venue can be deleted.(yet to be done)
+- Can book a venue.(yet to be done)
+- Can view all bookings.(yet to be done)
