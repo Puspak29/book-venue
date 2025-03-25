@@ -1,8 +1,11 @@
 import Link from "next/link"
-import { FaTrash, FaEye } from "react-icons/fa"
+import { FaEye } from "react-icons/fa"
+import { DeleteVenue } from "@/components"
+
 
 
 function MyList({props}) {
+
   return (
     <div
         className="bg-white shadow rounded-lg p-4 mt-4 flex flex-col sm:flex-row justify-between items-center"
@@ -20,11 +23,7 @@ function MyList({props}) {
             <FaEye/> View
           </Link>
 
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded mb-2 sm:mb-0 w-full sm:w-auto text-center hover:bg-red-700"
-          >
-            <FaTrash/> Delete
-          </button>
+          <DeleteVenue venueId={props.$id}/>
         </div>
       </div>
   )
