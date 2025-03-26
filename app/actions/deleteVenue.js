@@ -23,8 +23,10 @@ async function deleteVenue(venueId) {
             process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_VENUE,
             [Query.equal('user_id',userId)]
         );
-        const venueToDelete = venues.find((venue) => venue.$id === venueId);
-        console.log(venueToDelete);
+        // console.log(venueId.venueId);
+        // console.log("Available venue IDs:", venues.map(v => v.$id));
+        const venueToDelete = venues.find((venue) => venue.$id === venueId.venueId);
+        // console.log(venueToDelete);
 
         if(venueToDelete){
             console.log(venueToDelete.$id);
@@ -34,8 +36,8 @@ async function deleteVenue(venueId) {
                 venueToDelete.$id
             );
 
-            // revalidatePath('/venues/mylist');
-            // revalidatePath('/');
+            revalidatePath('/venues/mylist', 'layout');
+            revalidatePath('/', 'layout');
 
             return {
                 success: true

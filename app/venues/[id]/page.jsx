@@ -64,7 +64,7 @@ async function page({params}) {
           </div>
         </div>
 
-        <BookingForm/>
+        <BookingForm venue={room}/>
       </div>
     </>
   )

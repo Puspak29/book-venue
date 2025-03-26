@@ -6,5 +6,6 @@ import BookingForm from "./BookingForm";
 import AuthWrapper from "./AuthWrapper";
 import MyList from "./MyList";
 import DeleteVenue from "./DeleteVenue";
+import BookedVenueCard from "./BookedVenueCard";
 
-export { Header, Footer, Roomcard, Heading, BookingForm, AuthWrapper, MyList, DeleteVenue };
+export { Header, Footer, Roomcard, Heading, BookingForm, AuthWrapper, MyList, DeleteVenue, BookedVenueCard };

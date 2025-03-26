@@ -1,8 +1,19 @@
+import { Heading, BookedVenueCard } from "@/components";
+import getBookings from "../actions/getBookings";
 
-function BookingsPage() {
+async function BookingsPage() {
+  const bookings = await getBookings();
+  // console.log(bookings);
   return (
     <div>
-      Bookings
+      <Heading props="Bookings" />
+      {
+        bookings.length > 0 ? (
+          bookings.map((booking) => <BookedVenueCard key={`${booking.$id}`} booking={booking} />)
+        ) : (
+          <p>No bookings</p>
+        )
+      }
     </div>
   )
 }
