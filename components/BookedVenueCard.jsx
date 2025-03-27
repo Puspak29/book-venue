@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CancelBooking } from ".";
 
 function BookedVenueCard({booking}) {
     
@@ -46,12 +47,7 @@ function BookedVenueCard({booking}) {
           >
             View Room
           </Link>
-          <button
-            href="#"
-            className="bg-red-500 text-white px-4 py-2 rounded w-full sm:w-auto text-center hover:bg-red-700"
-          >
-            Cancel Booking
-          </button>
+          <CancelBooking bookingId={booking.$id} />
         </div>
       </div>
   )
