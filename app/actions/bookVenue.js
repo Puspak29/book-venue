@@ -6,6 +6,7 @@ import { ID } from "node-appwrite";
 import { redirect } from "next/navigation";
 import checkAuth from "./checkAuth";
 import { revalidatePath } from "next/cache";
+import checkAvailability from "./ckeckAvailability";
 
 async function bookVenue(previousState, formData) {
     const sessionCookie = cookies().get('appwrite-session');
@@ -27,17 +28,25 @@ async function bookVenue(previousState, formData) {
         const checkInTime = formData.get('check_in_time');
         const checkOutDate = formData.get('check_out_date');
         const checkOutTime = formData.get('check_out_time');
+        const venueId = formData.get('venue_id');
 
         // iso 8601 format
 
         const checkInDatetime = `${checkInDate}T${checkInTime}`;
         const checkOutDatetime = `${checkOutDate}T${checkOutTime}`;
 
+        const isAvailable = await checkAvailability(venueId, checkInDatetime, checkOutDatetime);
+        if(!isAvailable){
+            return {
+                error: "Venue is not available for the selected timeslot"
+            }
+        }
+
         const bookingData = {
             check_in : checkInDatetime,
             check_out : checkOutDatetime,
             user_id : user.id,
-            venue_id :  formData.get('venue_id'),
+            venue_id : venueId,
         }
 
 
