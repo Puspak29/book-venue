@@ -1,5 +1,7 @@
-import { createAdminClient } from "@/config/appwrite";
-import { ID } from "node-appwrite";
+'use client';
+
+import { account } from "@/config/appwriteClient";
+import { ID } from "appwrite";
 
 async function createUser(previousState, formData){
     const name = formData.get('name');
@@ -19,7 +21,7 @@ async function createUser(previousState, formData){
         return {error: 'Passwords do not match'};
     }
 
-    const { account } = await createAdminClient();
+    // const { account } = await createAdminClient();
 
     try {
         await account.create(ID.unique(), email, password, name);
