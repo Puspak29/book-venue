@@ -8,6 +8,8 @@ export default async function Home() {
   return (
     <>
       <Heading props="Available Venues" />
+      <div className="max-w-7xl mx-auto px-4 pb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {rooms.length > 0 ? (
         rooms.map((room) => (
           <Roomcard key={room.$id} props={room} />
@@ -15,6 +17,8 @@ export default async function Home() {
       ) : (
         <p>No rooms available</p>
       )}
+      </div>
+      </div>
     </>
   );
 }

@@ -9,7 +9,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: "BookVenue",
   description: "BookVenue is a platform for booking venues for events",
-  // image: "/logo.svg",
+  icons: {
+    icon: "/logo.svg"
+  }
 };
 
 export default function RootLayout({ children }) {

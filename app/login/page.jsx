@@ -9,17 +9,29 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 
 function LoginPage() {
-  const { isAuth, setIsAuth } = useAuth();
+  const { isAuth, setIsAuth, setCurrUser } = useAuth();
   const [state, formAction] = useActionState( createSession, {});
   const router = useRouter();
   useEffect(()=>{
     if(state.error) toast.error(state.error);
     if(state.success){
+      setCurrUser(state.user);
+
       setIsAuth(true);
       toast.success('Login successful');
       router.push('/');
     }
   },[state]);
+  useEffect(() => {
+    if (isAuth) {
+      // If user is already authenticated, redirect to home page
+      router.replace("/");
+    }
+  }, [isAuth, router]);
+
+  if (isAuth) {
+    return null; // optionally show a loading state while redirecting
+  }
 
   return (
     <div className="flex items-center justify-center">

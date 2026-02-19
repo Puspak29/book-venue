@@ -28,7 +28,7 @@ async function createVenue(previousState, formData) {
                 imageID = response.$id;
                 
             } catch (error) {
-                console.log('image upload error', error);
+                // console.log('image upload error', error);
                 return {error: 'Error uploading image'};
             }
         }else{
@@ -62,7 +62,7 @@ async function createVenue(previousState, formData) {
         }
         
     } catch (error) {
-        console.log('createVenue error', error);
+        // console.log('createVenue error', error);
         return {error: 'Error creating venue'};
     }
     

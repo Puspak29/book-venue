@@ -1,6 +1,7 @@
 'use server';
 import { createAdminClient } from "@/config/appwrite";
 import { cookies } from "next/headers";
+import checkAuth from "./checkAuth";
 
 async function createSession(previousState,data) {
     const email= data.get('email');
@@ -15,17 +16,25 @@ async function createSession(previousState,data) {
     try {
         const session = await account.createEmailPasswordSession(email, password);
 
-        cookies().set('appwrite-session', session.secret, {
+        const cookie = await cookies();
+        cookie.set('appwrite-session', session.secret, {
             httpOnly: true,
             sameSite: 'strict',
             secure: true,
             expire: new Date(session.expire),
             path: '/'
-        })
+        });
+        // console.log(session);
 
-        return {success: true};
+        const { user } = await checkAuth();
+
+        return {success: true, user: {
+                id: user.id,
+                email: user.email,
+                name: user.name
+        }};
     } catch (error) {
-        console.log('auth error', error);
+        // console.log('auth error', error);
         return {error: 'Invalid email or password'};
     }
 

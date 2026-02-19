@@ -1,17 +1,16 @@
 
 # BookVenue
 
-It is a Venue booking website build with Next.js(React), Appwrite, Tailwind CSS.
+**BookVenue** is a modern web application for discovering and booking venues for events. Users can browse, view details, and book venues seamlessly. Built with **Next.js (React)**, **Tailwind CSS**, and **lucide-react** icons for a fast, responsive, and visually appealing experience and **Appwrite** for backend services.
 
-:exclamation: **Note:** Currently working
-
+---
 
 ## Features
 
-- Can register or login.
-- All available venues are shown.
-- Can view full details of venue.
-- New venues can be added.
-- Existing venue can be deleted.(yet to be done)
-- Can book a venue.(yet to be done)
-- Can view all bookings.(yet to be done)
+- Browse a list of venues with detailed information  
+- View venue addresses, images, and pricing  
+- Book venues directly from the app  
+- User-friendly responsive layout for desktop and mobile  
+- Integrated notifications with **react-toastify**  
+- Admin controls: Delete or manage venue listings  
+- Clean UI with Tailwind CSS and modern icons from lucide-react 

@@ -6,7 +6,8 @@ import { Query } from "node-appwrite";
 import { redirect } from "next/navigation";
 
 async function getMylist() {
-    const sessionCookie = cookies().get('appwrite-session');
+    const cookie = await cookies();
+    const sessionCookie = cookie.get('appwrite-session');
     if (!sessionCookie) {
         return redirect('/login');
     }
