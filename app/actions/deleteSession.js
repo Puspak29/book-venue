@@ -4,13 +4,14 @@ import { cookies } from "next/headers";
 
 async function deleteSession() {
 
-    const sessionCoockie = cookies().get('appwrite-session');
-    if(!sessionCoockie) {
+    const cookie = await cookies();
+    const sessionCookie = cookie.get('appwrite-session');
+    if(!sessionCookie) {
         return {error: 'Session not found'};
     }
 
     try {
-        const { account } = await createSessionClient(sessionCoockie.value);
+        const { account } = await createSessionClient(sessionCookie.value);
 
         await account.deleteSession('current');
 

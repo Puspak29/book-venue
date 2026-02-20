@@ -7,7 +7,8 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 async function deleteVenue(venueId) {
-    const sessionCookie = cookies().get('appwrite-session');
+    const cookie = await cookies();
+    const sessionCookie = cookie.get('appwrite-session');
     if (!sessionCookie) {
         return redirect('/login');
     }
