@@ -9,7 +9,8 @@ import { revalidatePath } from "next/cache";
 import checkAvailability from "./ckeckAvailability";
 
 async function bookVenue(previousState, formData) {
-    const sessionCookie = cookies().get('appwrite-session');
+    const cookie = await cookies();
+    const sessionCookie = cookie.get('appwrite-session');
     if (!sessionCookie) {
         return redirect('/login');
     }

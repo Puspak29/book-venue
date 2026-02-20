@@ -16,7 +16,8 @@ function dateOverlap(checkIn1, checkOut1, checkIn2, checkOut2) {
 }
 
 async function checkAvailability(venueId, checkIn, checkOut) {
-    const sessionCookie = cookies().get('appwrite-session');
+    const cookie = await cookies();
+    const sessionCookie = cookie.get('appwrite-session');
     if (!sessionCookie) {
         return redirect('/login');
     }
