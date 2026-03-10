@@ -13,6 +13,7 @@ function AddVenuePage() {
     const [dragActive, setDragActive] = useState(false);
     const router = useRouter();
     const formRef = useRef(null);
+    const [preview, setPreview] = useState(null);
 
     useEffect(()=>{
         if(state.error) toast.error(state.error);
@@ -25,8 +26,16 @@ function AddVenuePage() {
     const handleDiscard = () => {
       if (formRef.current) {
         formRef.current.reset();
+        setPreview(null);
         toast.info('Form reset successfully');
       }
+    };
+
+    const handleImageChange = (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      setPreview(URL.createObjectURL(file));
     };
 
   const inputClasses = "block w-full rounded-xl border-gray-200 bg-gray-50/50 px-4 py-3 text-gray-900 transition-all focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 sm:text-sm outline-none border";
@@ -129,19 +138,47 @@ function AddVenuePage() {
           {/* Section 5: Media - Mapping: image */}
           <div className="pt-4">
             <label className={labelClasses}>Venue Image</label>
-            <div 
-              className={`relative border-2 border-dashed rounded-2xl p-10 transition-all flex flex-col items-center justify-center gap-3 ${dragActive ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 bg-gray-50 hover:bg-white hover:border-indigo-300'}`}
-              onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
+
+            <div
+              className={`relative border-2 border-dashed rounded-2xl p-10 transition-all flex flex-col items-center justify-center gap-3 
+              ${dragActive ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 bg-gray-50 hover:bg-white hover:border-indigo-300'}`}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragActive(true);
+              }}
               onDragLeave={() => setDragActive(false)}
             >
-              <div className="h-12 w-12 rounded-full bg-white shadow-sm flex items-center justify-center text-indigo-600">
-                <Upload size={24} />
-              </div>
-              <div className="text-center">
-                <p className="text-sm font-bold text-gray-900">Click to upload or drag and drop</p>
-                <p className="text-xs text-gray-500 mt-1">PNG, JPG or WEBP (max. 5MB)</p>
-              </div>
-              <input type="file" id="image" name="image" className="absolute inset-0 opacity-0 cursor-pointer" />
+              {preview ? (
+                <img
+                  src={preview}
+                  alt="Venue Preview"
+                  className="max-h-56 rounded-xl object-cover"
+                />
+              ) : (
+                <>
+                  <div className="h-12 w-12 rounded-full bg-white shadow-sm flex items-center justify-center text-indigo-600">
+                    <Upload size={24} />
+                  </div>
+
+                  <div className="text-center">
+                    <p className="text-sm font-bold text-gray-900">
+                      Click to upload or drag and drop
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      PNG, JPG or WEBP (max. 5MB)
+                    </p>
+                  </div>
+                </>
+              )}
+
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="absolute inset-0 opacity-0 cursor-pointer"
+              />
             </div>
           </div>
 

@@ -1,4 +1,6 @@
 // import rooms from '@/data/rooms.json';
+export const dynamic = "force-dynamic";
+
 import { Roomcard, Heading } from '@/components';
 import getAllVenues from './actions/getAllVenues';
 
